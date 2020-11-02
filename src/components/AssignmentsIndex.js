@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
+import AssignmentCard from "./AssignmentCard";
 
 const AssignmentsIndex = () => {
-	const [assignments, setAssignments ] = useState ([])
+  const [assignments, setAssignments] = useState([]);
 
-	useEffect(() => {
-		const getAssignmentsIndex = async () => {
-			const response = await Assignments.index()
-			setAssignments(response)
-		}
-		getAssignmentsIndex();
-	}, [])
+  useEffect(() => {
+    const getAssignmentsIndex = async () => {
+      const response = await Assignments.index();
+      setAssignments(response);
+    };
+    getAssignmentsIndex();
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text>Welcome to DevelUp</Text>
+      <FlatList
+        data={assignments}
+        keyExtractor={(assignment) => assignment.id.toString()}
+        renderItem={({ item }) => {
+          return <AssignmentCard assignment={item} />;
+        }}
+      />
     </View>
   );
 };
