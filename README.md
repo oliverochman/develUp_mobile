@@ -1,1 +1,0 @@
-# develUp_mobile
