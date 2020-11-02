@@ -2,7 +2,14 @@ import React from "react";
 import { View } from "react-native";
 
 const AssignmentCard = ({ assignment }) => {
-  return <View></View>;
+  return (
+    <View>
+      <Text>{assignment.title}</Text>
+      <Text>{assignment.points}</Text>
+      <Text>{assignment.skills}</Text>
+      <Text>{assignment.budget}</Text>
+    </View>
+  );
 };
 
 export default AssignmentCard;

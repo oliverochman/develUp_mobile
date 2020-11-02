@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import AssignmentCard from "./AssignmentCard";
+import Assignments from '../modules/assignments'
 
 const AssignmentsIndex = () => {
   const [assignments, setAssignments] = useState([]);
