@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Auth from "../modules/authentication";
+
 import {
   Container,
   Button,
@@ -10,13 +12,30 @@ import {
   Text,
 } from "native-base";
 
-
-const ClientSignUp = () => {
+const ClientSignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [company, setCompany] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
+
+  const auth = new Auth({ host: "http://localhost:3000/api/" });
+
+  const signUpHandler = async () => {
+    try {
+      let response = await auth.signUp({
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation,
+        company_name: company,
+        company_url: companyUrl,
+        role: "client",
+      });
+      props.navigation.navigate("clientPage");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -24,7 +43,7 @@ const ClientSignUp = () => {
         <Form>
           <Item floatingLabel>
             <Label>Email</Label>
-            <Input onChangeText={(text) => setEmail(text)}/>
+            <Input onChangeText={(text) => setEmail(text)} />
           </Item>
 
           <Item floatingLabel last>
@@ -34,12 +53,15 @@ const ClientSignUp = () => {
 
           <Item floatingLabel last>
             <Label>Password Confirmation</Label>
-            <Input onChangeText={(text) => setPasswordConfirmation(text)} secureTextEntry />
+            <Input
+              onChangeText={(text) => setPasswordConfirmation(text)}
+              secureTextEntry
+            />
           </Item>
 
           <Item floatingLabel last>
             <Label>Company Name</Label>
-            <Input onChangeText={(text) => setCompany(text)}/>
+            <Input onChangeText={(text) => setCompany(text)} />
           </Item>
 
           <Item floatingLabel last>
@@ -48,7 +70,7 @@ const ClientSignUp = () => {
           </Item>
         </Form>
       </Content>
-      <Button block>
+      <Button block onPress={() => signUpHandler()}>
         <Text>Submit</Text>
       </Button>
     </Container>

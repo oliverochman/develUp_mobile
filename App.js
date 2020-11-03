@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AssignmentsIndex from "./src/components/AssignmentsIndex";
 import ClientSignUp from "./src/components/ClientSignUp";
+import ClientPage from "./src/components/ClientPage";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,7 @@ const App = () => {
       <Stack.Navigator screenOptions={myOptions}>
         <Stack.Screen name="develUp" component={AssignmentsIndex} />
         <Stack.Screen name="clientSignUp" component={ClientSignUp} />
+        <Stack.Screen name="clientPage" component={ClientPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
