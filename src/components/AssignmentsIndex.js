@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, FlatList } from "react-native";
 import AssignmentCard from "./AssignmentCard";
 import Assignments from "../modules/assignments";
-import { Container } from "native-base";
+import { Button, Container, Text } from "native-base";
 
-const AssignmentsIndex = () => {
+const AssignmentsIndex = ({ navigation }) => {
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,9 @@ const AssignmentsIndex = () => {
 
   return (
     <Container style={styles.container}>
+      <Button onPress={() => navigation.navigate("clientSignUp")}>
+        <Text>I want to publish Assignments for free!</Text>
+      </Button>
       <FlatList
         data={assignments}
         keyExtractor={(assignment) => assignment.id.toString()}
