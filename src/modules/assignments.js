@@ -5,7 +5,7 @@ const Assignments = {
     try {
       const response = await axios.get("/assignments");
       return response.data.assignments;
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
   },
