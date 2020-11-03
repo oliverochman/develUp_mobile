@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import AssignmentCard from "./AssignmentCard";
 import Assignments from "../modules/assignments";
-import { Container, Content } from "native-base";
+import { Container } from "native-base";
 
 const AssignmentsIndex = () => {
   const [assignments, setAssignments] = useState([]);
@@ -24,7 +24,7 @@ const AssignmentsIndex = () => {
           return <AssignmentCard assignment={item} />;
         }}
       />
-      </Container>
+    </Container>
   );
 };
 

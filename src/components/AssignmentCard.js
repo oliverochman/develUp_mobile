@@ -1,19 +1,6 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Badge,
-} from "native-base";
+import { StyleSheet } from "react-native";
+import { Card, CardItem, Text, Icon, Left, Body, Badge } from "native-base";
 
 const AssignmentCard = ({ assignment }) => {
   return (
