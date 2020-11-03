@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import AssignmentCard from "./AssignmentCard";
 import Assignments from "../modules/assignments";
+import { Container, Content } from "native-base";
 
 const AssignmentsIndex = () => {
   const [assignments, setAssignments] = useState([]);
@@ -15,8 +16,7 @@ const AssignmentsIndex = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Welcome to DevelUp</Text>
+    <Container style={styles.container}>
       <FlatList
         data={assignments}
         keyExtractor={(assignment) => assignment.id.toString()}
@@ -24,16 +24,13 @@ const AssignmentsIndex = () => {
           return <AssignmentCard assignment={item} />;
         }}
       />
-    </View>
+      </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#344955",
   },
 });
 
