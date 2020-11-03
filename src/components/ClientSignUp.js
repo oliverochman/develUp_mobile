@@ -12,6 +12,7 @@ import {
   Text,
 } from "native-base";
 
+
 const ClientSignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,13 +30,16 @@ const ClientSignUp = (props) => {
         password_confirmation: passwordConfirmation,
         company_name: company,
         company_url: companyUrl,
-        role: "client",
+        role: "client"
       });
-      props.navigation.navigate("clientPage");
+      props.navigation.navigate("clientPage", {
+        customParameter: `Thanks for joining develUp ${response.data.data.uid}!`,
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
 
   return (
     <Container>
@@ -43,7 +47,7 @@ const ClientSignUp = (props) => {
         <Form>
           <Item floatingLabel>
             <Label>Email</Label>
-            <Input onChangeText={(text) => setEmail(text)} />
+            <Input onChangeText={(text) => setEmail(text)}/>
           </Item>
 
           <Item floatingLabel last>
@@ -53,15 +57,12 @@ const ClientSignUp = (props) => {
 
           <Item floatingLabel last>
             <Label>Password Confirmation</Label>
-            <Input
-              onChangeText={(text) => setPasswordConfirmation(text)}
-              secureTextEntry
-            />
+            <Input onChangeText={(text) => setPasswordConfirmation(text)} secureTextEntry />
           </Item>
 
           <Item floatingLabel last>
             <Label>Company Name</Label>
-            <Input onChangeText={(text) => setCompany(text)} />
+            <Input onChangeText={(text) => setCompany(text)}/>
           </Item>
 
           <Item floatingLabel last>

@@ -74,7 +74,6 @@ class Auth {
   }
   signUp(userFields, confirmSuccessUrl) {
     return new Promise(async (resolve, reject) => {
-      debugger;
       try {
         const signUpResponse = await axios.post(
           this.apiAuthUrl,
@@ -85,7 +84,7 @@ class Auth {
         );
         this.setSession(signUpResponse.headers);
         resolve(signUpResponse);
-      } catch (err) {
+      } catch (err) {debugger
         reject(err);
       }
     });
