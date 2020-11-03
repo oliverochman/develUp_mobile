@@ -17,14 +17,14 @@ const AssignmentCard = ({ assignment }) => {
       <CardItem footer bordered style={styles.container}>
         <Left>
           <Text note style={styles.container2}>
-            Points:{" "}
+            Points:
           </Text>
           <Badge primary>
             <Text>{assignment.points}</Text>
           </Badge>
         </Left>
         <Body>
-          <Text note style={styles.container2}>
+          <Text note style={styles.cardSkills}>
             Skills: {assignment.skills.map((word) => word).join(" ")}
           </Text>
         </Body>
@@ -33,13 +33,13 @@ const AssignmentCard = ({ assignment }) => {
   );
 };
 
+export default AssignmentCard;
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#4A6572",
   },
-  container2: {
+  cardSkills: {
     color: "#ffff",
   },
 });
-
-export default AssignmentCard;

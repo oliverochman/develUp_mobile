@@ -28,10 +28,10 @@ const AssignmentsIndex = () => {
   );
 };
 
+export default AssignmentsIndex;
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#344955",
   },
 });
-
-export default AssignmentsIndex;

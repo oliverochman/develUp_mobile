@@ -5,16 +5,6 @@ import AssignmentsIndex from "./src/components/AssignmentsIndex";
 
 const Stack = createStackNavigator(); 
 
-const myOptions = {
-  headerStyle: { backgroundColor: "#F9AA33" },
-  title: "develUp",
-  headerTitleAlign: "center",
-  headerTitleStyle: {
-    fontWeight: "bold",
-    fontSize: 25
-  },
-  headerTintColor: "white",
-};
 
 const App = () => {
   return (
@@ -27,3 +17,14 @@ const App = () => {
 };
 
 export default App;
+
+const myOptions = {
+  headerStyle: { backgroundColor: "#F9AA33" },
+  title: "develUp",
+  headerTitleAlign: "center",
+  headerTitleStyle: {
+    fontWeight: "bold",
+    fontSize: 25
+  },
+  headerTintColor: "white",
+};
