@@ -84,8 +84,8 @@ class Auth {
         );
         this.setSession(signUpResponse.headers);
         resolve(signUpResponse);
-      } catch (err) {debugger
-        reject(err);
+      } catch (error) {
+        resolve(error);
       }
     });
   }

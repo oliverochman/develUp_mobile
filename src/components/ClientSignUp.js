@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Auth from "../modules/authentication";
-
+import { StyleSheet } from "react-native";
 import {
   Container,
   Button,
@@ -12,34 +12,35 @@ import {
   Text,
 } from "native-base";
 
-
 const ClientSignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [company, setCompany] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
+  const [message, setMessage] = useState();
 
-  const auth = new Auth({ host: "http://localhost:3000/api/" });
+  const auth = new Auth({ host: "http://localhost:3000/api" });
 
   const signUpHandler = async () => {
+    let response;
     try {
-      let response = await auth.signUp({
+      response = await auth.signUp({
         email: email,
         password: password,
         password_confirmation: passwordConfirmation,
         company_name: company,
         company_url: companyUrl,
-        role: "client"
+        role: "client",
       });
       props.navigation.navigate("clientPage", {
         customParameter: `Thanks for joining develUp ${response.data.data.uid}!`,
       });
     } catch (error) {
-      console.log(error);
+      setMessage(response.toString());
     }
   };
-
+  
 
   return (
     <Container>
@@ -47,7 +48,7 @@ const ClientSignUp = (props) => {
         <Form>
           <Item floatingLabel>
             <Label>Email</Label>
-            <Input onChangeText={(text) => setEmail(text)}/>
+            <Input onChangeText={(text) => setEmail(text)} />
           </Item>
 
           <Item floatingLabel last>
@@ -57,12 +58,15 @@ const ClientSignUp = (props) => {
 
           <Item floatingLabel last>
             <Label>Password Confirmation</Label>
-            <Input onChangeText={(text) => setPasswordConfirmation(text)} secureTextEntry />
+            <Input
+              onChangeText={(text) => setPasswordConfirmation(text)}
+              secureTextEntry
+            />
           </Item>
 
           <Item floatingLabel last>
             <Label>Company Name</Label>
-            <Input onChangeText={(text) => setCompany(text)}/>
+            <Input onChangeText={(text) => setCompany(text)} />
           </Item>
 
           <Item floatingLabel last>
@@ -70,6 +74,8 @@ const ClientSignUp = (props) => {
             <Input onChangeText={(text) => setCompanyUrl(text)} />
           </Item>
         </Form>
+
+        <Text style={styles.errorMessage}>{message}</Text>
       </Content>
       <Button block onPress={() => signUpHandler()}>
         <Text>Submit</Text>
@@ -79,3 +85,7 @@ const ClientSignUp = (props) => {
 };
 
 export default ClientSignUp;
+
+const styles = StyleSheet.create({
+  errorMessage: { color: "red", fontSize: 20 },
+});
