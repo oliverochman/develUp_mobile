@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Checkbox from './Checkbox'
 import {
   Container,
   Button,
@@ -18,10 +19,44 @@ const AssignmentForm = () => {
   const [description, setDescription] = useState("");
   const [timeframe, setTimeframe] = useState("");
   const [budget, setBudget] = useState("");
-  const [ruby, setRuby] = useState(false);
-  const [angular, setAngular] = useState(false);
+  // const [ruby, setRuby] = useState(false);
+  // const [angular, setAngular] = useState(false);
 
-  const [selectedSkills, setSelectedSkills] = useState([]);
+  // const [selectedSkills, setSelectedSkills] = useState([]);
+  const [counter, setCounter] = useState(0)
+  const [skills, setSkills] = useState([
+    {
+      id: 1,
+      value: 'Ruby',
+      isChecked: false
+    }, {
+      id: 2,
+      value: 'Javascript',
+      isChecked: false
+    }
+  ])
+
+  const publishAssignment = () => {
+    const selectedSkills = []
+    skills.forEach(skill => {
+      if (skill.isChecked) {
+        selectedSkills.push(skill.value)
+      }
+    })
+
+    setCounter(selectedSkills)
+  }
+
+  const handleCheckChieldElement = async (event) => {
+    let updatedSkills = skills
+    setCounter(event.value)
+
+    updatedSkills.forEach(skill => {
+      if (skill.value === event.value)
+        skill.isChecked = event.checked
+    })
+    setSkills(updatedSkills)
+  }
 
   // const selectedSkills = []
 
@@ -40,6 +75,7 @@ const AssignmentForm = () => {
               style={styles.input}
             />
           </Item>
+          <Text>{counter.toString()}</Text>
 
           <Item fixedLabel>
             <Textarea
@@ -63,7 +99,16 @@ const AssignmentForm = () => {
           <Item style={styles.checkbox}>
             <Label style={styles.label}>Skills</Label>
           </Item>
-          <Item style={styles.checkbox}>
+
+          {skills.map(skill => {
+            return (
+              <Item style={styles.checkbox}>
+                <Checkbox handleCheckChieldElement={handleCheckChieldElement}  {...skill} />
+              </Item>
+            )
+          })}
+
+          {/* <Item style={styles.checkbox}>
             <CheckBox
               disabled={false}
               checked={angular}
@@ -116,7 +161,7 @@ const AssignmentForm = () => {
             <Body>
               <Text>React Native</Text>
             </Body>
-          </Item>
+          </Item> */}
 
           {/* <Item floatingLabel last>
           <Label style={styles.label}>SKILLS CHECKBOX</Label>
@@ -132,7 +177,7 @@ const AssignmentForm = () => {
           </Item>
         </Form>
       </Content>
-      <Button block onPress={() => signUpHandler()}>
+      <Button block onPress={() => publishAssignment()}>
         <Text>Publish</Text>
       </Button>
     </Container>
