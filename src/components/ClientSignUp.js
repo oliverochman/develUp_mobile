@@ -40,7 +40,6 @@ const ClientSignUp = (props) => {
       setMessage(response.toString());
     }
   };
-  
 
   return (
     <Container>

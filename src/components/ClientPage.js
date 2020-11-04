@@ -1,12 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Button } from "native-base";
+
 
 const ClientPage = (props) => {
   return (
     <View>
-      <Text style={styles.welcomeText}>
+      {/* <Text style={styles.welcomeText}>
         {props.route.params.customParameter}
-      </Text>
+      </Text> */}
+      <Button onPress={() => props.navigation.navigate("assignmentForm")}>
+        <Text>Create Assignment</Text>
+      </Button>
     </View>
   );
 };
