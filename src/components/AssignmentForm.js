@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import CheckBox from "@react-native-community/checkbox";
 import {
   Container,
   Button,
@@ -11,6 +10,7 @@ import {
   Label,
   Textarea,
   Body,
+  CheckBox,
 } from "native-base";
 
 const AssignmentForm = () => {
@@ -18,10 +18,14 @@ const AssignmentForm = () => {
   const [description, setDescription] = useState("");
   const [timeframe, setTimeframe] = useState("");
   const [budget, setBudget] = useState("");
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [ruby, setRuby] = useState(false);
+  const [angular, setAngular] = useState(false);
 
-  
-/*   const [skills, setSkills] = useState([]); */
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  // const selectedSkills = []
+
+  /*   const [skills, setSkills] = useState([]); */
   /* const skillsHandler = () => {}; */
 
   return (
@@ -58,10 +62,15 @@ const AssignmentForm = () => {
 
           <Item style={styles.checkbox}>
             <Label style={styles.label}>Skills</Label>
+          </Item>
+          <Item style={styles.checkbox}>
             <CheckBox
               disabled={false}
-              value={toggleCheckBox}
-              onValueChange={(newValue) => setToggleCheckBox(newValue)}
+              checked={angular}
+              onPress={() => {
+                setAngular(!angular);
+                // {skills === true && setSelectedSkills(...selectedSkills.push("Ruby"))}
+              }}
             />
             <Body>
               <Text>Angular</Text>
@@ -69,7 +78,14 @@ const AssignmentForm = () => {
           </Item>
 
           <Item style={styles.checkbox}>
-            <CheckBox disabled={false} value={false} />
+            <CheckBox
+              disabled={false}
+              checked={ruby}
+              onPress={() => {
+                setRuby(!ruby);
+                // {skills === true && setSelectedSkills(...selectedSkills.push("Ruby"))}
+              }}
+            />
             <Body>
               <Text>Ruby</Text>
             </Body>
